@@ -4,7 +4,7 @@ import { MessageType } from "../../Types";
 type messageInitialType = {
   loading: boolean;
   error: string;
-  group_messages: Record<string, string[]>;
+  group_messages: Record<string, MessageType[]>;
 };
 
 const initialState: messageInitialType = {

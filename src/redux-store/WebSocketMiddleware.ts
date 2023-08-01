@@ -4,7 +4,7 @@ import { event_handlers } from "./event_handlers";
 
 const createSocketMiddleware: Middleware = (storeAPI) => {
   const YOUR_AUTH_TOKEN =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMTQwMTYxLCJpYXQiOjE2OTA1MzUzNjEsImp0aSI6IjBiNWI0NWJlMmIxODRkYzFiMmI1NmJlNTczODFiMWY4IiwidXNlcl9pZCI6Ijc1YThjNjg2LTYxODUtNDEyNS05NDIzLTFmZDJmODM0YmVmMSJ9.bbx5-N-hlX_M2D5R5ZpddVnm7jOW7bJoQ0vqUJCeGbM";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxNDg1MDgzLCJpYXQiOjE2OTA4ODAyODMsImp0aSI6Ijk4YmRhOGM0MDU0ZDQ3MTRiYzA1OThiNTJjZDljZWQyIiwidXNlcl9pZCI6ImM5OGQ1M2YxLTQ5MmQtNDdmNy05MjM1LTM4MmFhNzU2ZmZmZiJ9.ySXVIQoE9-irCLcBh0i1Cz0S6Jp-Cnp3sTpRFbLm6vI";
   const socket = new WebSocket(
     `ws://0.0.0.0:8002/ws/chat/?token=${YOUR_AUTH_TOKEN}`
   );
