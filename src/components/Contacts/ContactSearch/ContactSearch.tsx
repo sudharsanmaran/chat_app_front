@@ -2,7 +2,11 @@ import './ContactSearch.css'
 
 function ContactSearch() {
   return (
-    <div className='contact-search'>ContactSearch</div>
+    <div className='contact-search-container'>
+      <div className='contact-search'>
+        <input className='search-input' placeholder='Search'/>
+      </div>
+    </div>
   )
 }
 

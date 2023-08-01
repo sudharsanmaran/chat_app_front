@@ -13,4 +13,9 @@
 .input-message {
     height: 80%;
     width: 80%;
+    text-align: center;
+}
+
+.input-message:focus{
+    outline: none;
 }

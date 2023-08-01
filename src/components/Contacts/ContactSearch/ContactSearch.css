@@ -1,4 +1,31 @@
+.contact-search-container{
+    height: 9%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
 .contact-search{
-    height: 7%;
-    border: 1px solid black;
+    padding: 2%;
+    display: flex;
+    align-content: space-around;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 70%;
+    border-radius: 24px;
+    border: 1px solid;
+}
+
+.search-input{
+    height: 90%;
+    width: 90%;
+    border: 0px;
+    text-align: center;
+}
+
+.search-input:focus{
+    outline: none;
 }

@@ -28,12 +28,22 @@ function InputMessage() {
     }
   };
 
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      handleSend();
+    }
+  };
+
   return (
     <div className="input-message-container">
-      <textarea className="input-message" id="message" name="message" ref={content}></textarea>
-      <button type="button" onClick={handleSend}>
-        Send
-      </button>
+      <textarea
+        className="input-message"
+        id="message"
+        name="message"
+        ref={content}
+        placeholder="Type a Message"
+        onKeyDown={handleKeyDown}
+      ></textarea>
     </div>
   );
 }

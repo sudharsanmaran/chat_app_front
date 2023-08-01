@@ -1,4 +1,5 @@
-.contacts-container{
-    height: 100%;
-    width: 30%;
+.contacts-container {
+  height: 100%;
+  width: 35%;
+  border-right: 1px solid;
 }
