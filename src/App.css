@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.outer-container {
+  position: relative;
+  height: 100vh;
+  border: 1px solid red;
+  width: 100vw;
+}
+
+.container {
+  position: inherit;
+  padding: 0;
+  margin: 0;
+  height: 90vh;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 5vh;
+}
