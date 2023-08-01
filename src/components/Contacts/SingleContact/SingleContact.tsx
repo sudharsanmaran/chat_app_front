@@ -16,7 +16,7 @@ function SingleContact({ group }: { group: GroupType }) {
       <div className="group-profile-pic"></div>
       <div className="group-info">
         <div className="-group-name">{group.name}</div>
-        <div className="last-message">last message fdlbnfdjbn fd nbvfdhn</div>
+        <div className="last-message">last message bla bla...</div>
       </div>
     </div>
   );

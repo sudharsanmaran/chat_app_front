@@ -12,9 +12,11 @@ const createSocketMiddleware: Middleware = (storeAPI) => {
   socket.onmessage = (event) => {
     const data = JSON.parse(event.data);
     console.log("Received message:", data);
-    const event_handler = event_handlers.get(data.type) || null;
-    if (event_handler) {
-      storeAPI.dispatch(event_handler(data["message"]));
+    const handlers = event_handlers.get(data.type) || [];
+    if (handlers.length > 0) {
+      handlers.forEach((handler) => {
+        storeAPI.dispatch(handler(data["message"]));
+      });
     }
   };
 

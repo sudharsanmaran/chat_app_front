@@ -28,7 +28,7 @@ export const contactInfoSlice = createSlice({
       state.selected_group = action.payload[0];
     },
     reArrangeUserGroup: (state, action) => {
-      const group_id = action.payload["group_id"];
+      const group_id = action.payload.message.chat_room;
       const elementToRemove = state.groups.find((g) => g.id === group_id);
       if (elementToRemove) {
         const indexToRemove = state.groups.indexOf(elementToRemove);

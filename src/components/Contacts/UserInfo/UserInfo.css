@@ -1,6 +1,6 @@
 .user-info-container {
   height: 10%;
-  border: 1px solid brown;
+  border-bottom: 1px solid;
   width: 100%;
   display: flex;
   gap: 10%;
