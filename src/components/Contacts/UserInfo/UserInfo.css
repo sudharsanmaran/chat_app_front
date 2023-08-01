@@ -14,3 +14,8 @@
   border: 1px solid;
   border-radius: 50%;
 }
+
+.user-name{
+  font-size: 18px;
+  font-weight: bold;
+}
