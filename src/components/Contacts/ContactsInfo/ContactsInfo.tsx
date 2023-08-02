@@ -1,12 +1,12 @@
 import "./ContactsInfo.css";
-import {useSelector } from "react-redux";
+import {shallowEqual, useSelector } from "react-redux";
 import SingleContact from "../SingleContact/SingleContact";
 import { RootState } from "../../../redux-store/store";
 import { GroupType } from "../../../Types";
 
 function ContactsInfo() {
   const groups: GroupType[] = useSelector(
-    (state: RootState) => state.contactInfo.groups
+    (state: RootState) => state.contactInfo.groups, shallowEqual
   );
 
 

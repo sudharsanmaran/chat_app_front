@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import "./InputMessage.css";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux-store/store";
 import { GroupType } from "../../../Types";
 
@@ -9,7 +9,7 @@ function InputMessage() {
   const dispatch = useDispatch();
 
   const selected_group: GroupType | null = useSelector(
-    (state: RootState) => state.contactInfo.selected_group
+    (state: RootState) => state.contactInfo.selected_group, shallowEqual
   );
 
   const handleSend = () => {
