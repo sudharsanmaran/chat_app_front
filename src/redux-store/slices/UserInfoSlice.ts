@@ -7,8 +7,6 @@ export type UserInfoInitialState = {
   error: string | undefined;
   user: UserInfoType;
   isAuthenticated: boolean;
-  accessToken: null | string;
-  refreshToken: null | string;
 };
 
 export const initialState: UserInfoInitialState = {
@@ -26,8 +24,6 @@ export const initialState: UserInfoInitialState = {
     user_permissions: [],
   },
   isAuthenticated: false,
-  accessToken: null,
-  refreshToken: null,
 };
 
 export const login_thunk = createAsyncThunk(
@@ -52,10 +48,8 @@ export const userInfo = createSlice({
       state.user = action.payload;
       state.error = "";
     },
-    updateToken: (state, action) => {
+    updateAuthentication: (state, action) => {
       state.isAuthenticated = action.payload.isAuthenticated;
-      state.accessToken = action.payload.accessToken;
-      state.refreshToken = action.payload.refreshToken;
     },
   },
   extraReducers: (builder) => {
@@ -63,24 +57,20 @@ export const userInfo = createSlice({
       state.loading = true;
     });
 
-    builder.addCase(login_thunk.fulfilled, (state, action) => {
+    builder.addCase(login_thunk.fulfilled, (state) => {
       state.loading = false;
       state.isAuthenticated = true;
-      state.accessToken = action.payload.access;
-      state.refreshToken = action.payload.refresh;
       state.error = "";
     });
 
     builder.addCase(login_thunk.rejected, (state, action) => {
       state.loading = false;
       state.isAuthenticated = false;
-      state.accessToken = null;
-      state.refreshToken = null;
       state.error = action.error.message;
     });
 
   },
 });
 
-export const { updateUserInfo, updateToken } = userInfo.actions;
+export const { updateUserInfo, updateAuthentication } = userInfo.actions;
 export default userInfo.reducer;

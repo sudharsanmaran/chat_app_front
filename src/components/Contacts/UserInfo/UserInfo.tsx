@@ -2,10 +2,11 @@ import "./UserInfo.css";
 import { UserInfoType } from "../../../Types";
 import { RootState } from "../../../redux-store/store";
 import { useDispatch, useSelector } from "react-redux";
-import { updateToken } from "../../../redux-store/slices/UserInfoSlice";
+import { updateToken } from "../../../APIs/axios";
+import { updateAuthentication } from "../../../redux-store/slices/UserInfoSlice";
 
 function UserInfo() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const user: UserInfoType = useSelector(
     (state: RootState) => state.userInfo.user
   );
@@ -19,7 +20,16 @@ function UserInfo() {
         </div>
         <div className="user-about">about</div>
       </div>
-      <button onClick={()=>dispatch(updateToken({'accessToken': '', 'refreshToken': '', 'isAuthenticated': false}))}>logout</button>
+      <button
+        onClick={() =>{
+          updateToken('', '');
+          dispatch(updateAuthentication({'isAuthenticated': false}))
+        }
+
+        }
+      >
+        logout
+      </button>
     </div>
   );
 }

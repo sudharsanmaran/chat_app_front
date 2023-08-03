@@ -1,20 +1,18 @@
 import { shallowEqual, useSelector } from "react-redux";
-import { GroupType } from "../../../Types";
 import "./ChatInfo.css";
+import GroupInfo from "./GroupInfo/GroupInfo";
 import { RootState } from "../../../redux-store/store";
+import UserInfo from "./UserInfo/UserInfo";
 
 function ChatInfo() {
-  const selected_group: GroupType | null = useSelector(
-    (state: RootState) => state.contactInfo.selected_group, shallowEqual
-  );
+  const selected_type = useSelector(
+    (state:RootState) => state.contactInfo.selected_type, shallowEqual
+  )
 
   return (
     <div className="chat-info-container">
-      <div className="group-profile-pic"></div>
-      <div className="group-profile-container">
-        <div className="group-name">{selected_group?.name}</div>
-        <div className="group-members">group members</div>
-      </div>
+      {selected_type === 'group' &&  <GroupInfo />}
+      {selected_type === 'user' &&  <UserInfo />}
     </div>
   );
 }

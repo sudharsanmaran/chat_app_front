@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useDispatch } from "react-redux";
 import { LoginResponse, login_thunk } from "../../redux-store/slices/UserInfoSlice";
+import { updateToken } from "../../APIs/axios";
 
 const style = {
   position: "absolute",
@@ -31,6 +32,7 @@ export default function Login() {
   const handleClose = async (data: { username: string; password: string; }) => {
     dispatch(login_thunk(data)).then((res: LoginResponse)=>{
       dispatch({'type':"SET_WEBSOCKET_CONNECTION", 'payload': { 'token': res.payload.access}})
+      updateToken(res.payload.access, res.payload.refresh)
     })
     setOpen(false);
   };
@@ -76,7 +78,7 @@ export default function Login() {
                 Submit
               </button>
             </form>
-            <DevTool control={control} />
+            {/* <DevTool control={control} /> */}
           </div>
         </Box>
       </Modal>

@@ -1,6 +1,6 @@
 import "./ContactsInfo.css";
 import {shallowEqual, useSelector } from "react-redux";
-import SingleContact from "../SingleContact/SingleContact";
+import SingleContact from "./SingleContact/SingleContact";
 import { RootState } from "../../../redux-store/store";
 import { GroupType } from "../../../Types";
 
@@ -12,7 +12,7 @@ function ContactsInfo() {
 
   return (
     <div className="contact-info">
-      {groups.length && groups.map(group =>{
+      {groups.length > 0 && groups.map(group =>{
         return <SingleContact key={group.id} group={group}/>
       })}
     </div>

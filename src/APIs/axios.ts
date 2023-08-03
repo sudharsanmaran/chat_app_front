@@ -1,7 +1,5 @@
 import axios, { AxiosResponse } from "axios";
 import { BASE_URL, REFRESH_TOKEN_URL } from "../constants";
-import { updateToken } from "../redux-store/slices/UserInfoSlice";
-
 
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -17,6 +15,11 @@ export const private_api = axios.create({
   },
 });
 
+export const updateToken = (accessToken: string, refreshToken: string) => {
+  localStorage.setItem("accessToken", accessToken);
+  localStorage.setItem("refreshToken", refreshToken);
+};
+
 async function fetchNewAccessToken(): Promise<string> {
   try {
     const response = await api.post(
@@ -28,11 +31,11 @@ async function fetchNewAccessToken(): Promise<string> {
         },
       }
     );
-    const { access, refresh } = response.data;
-    updateToken({'accessToken': access, 'refreshToken': refresh, 'isAuthenticated': true})
+    const { access } = response.data;
+    localStorage.setItem("accessToken", access);
     return access;
   } catch (error) {
-    updateToken({'accessToken': '', 'refreshToken': '', 'isAuthenticated': false});
+    updateToken("", "");
     throw error;
   }
 }
@@ -53,7 +56,7 @@ private_api.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
         return private_api(originalRequest);
       } catch (error) {
-        updateToken({'accessToken': '', 'refreshToken': '', 'isAuthenticated': false});
+        updateToken("", "");
         return Promise.reject(error);
       }
     }

@@ -1,5 +1,5 @@
 import { Middleware } from "@reduxjs/toolkit";
-import { event_handlers } from "./event_handlers";
+import { event_handlers } from "../event_handlers";
 
 const createSocketMiddleware: Middleware = (storeAPI) => {
   let socket: WebSocket | null = null;
@@ -23,6 +23,7 @@ const createSocketMiddleware: Middleware = (storeAPI) => {
 
       socket.onmessage = (event) => {
         const data = JSON.parse(event.data);
+        console.log("message recived",data);
         const handlers = event_handlers.get(data.type) || [];
         if (handlers.length > 0) {
           handlers.forEach((handler) => {

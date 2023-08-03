@@ -1,0 +1,12 @@
+.group-profile-pic {
+    height: 40px;
+    width: 40px;
+    border: 1px solid;
+    border-radius: 50%;
+  }
+  
+
+  .group-name {
+    font-size: 22px;
+    font-weight: bold;
+  }
