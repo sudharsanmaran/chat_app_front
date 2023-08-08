@@ -18,6 +18,7 @@ export type GroupType = {
     created_at: string;
     updated_at: string;
     users: string[];
+    is_private:boolean;
 }
 
 export type MessageType = {

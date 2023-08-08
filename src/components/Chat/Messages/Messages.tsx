@@ -12,13 +12,24 @@ function Messages() {
     (state: RootState) => state.contactInfo.selected_group
   );
 
+  const selected_type: string | null = useSelector(
+    (state: RootState) => state.contactInfo.selected_type
+  );
+
+  const selected_user: UserInfoType | null = useSelector(
+    (state: RootState) => state.contactInfo.selected_user
+  );
+
   const user: UserInfoType = useSelector(
     (state: RootState) => state.userInfo.user
   );
 
-  const messages = useSelector((state: RootState) => {
+  const messages: MessageType[] | [] = useSelector((state: RootState) => {
     const groupId = selected_group?.id;
-    return groupId ? state.Message.group_messages[groupId] || [] : [];
+    if (selected_type === "group") {
+      return groupId ? state.Message.group_messages[groupId] || [] : [];
+    }
+    return [];
   });
 
   useEffect(() => {
@@ -48,6 +59,16 @@ function Messages() {
     }
   };
 
+  const handleStartNewPrivateChatRoom = (receiver: UserInfoType | null) => {
+    dispatch({
+      type: "SEND_WEBSOCKET_MESSAGE",
+      payload: {
+        type: "create_private_chat_room",
+        users: [receiver, user],
+      },
+    });
+  };
+
   return (
     <div className="messages" ref={messagesContainerRef}>
       {messages.length > 0 &&
@@ -69,6 +90,13 @@ function Messages() {
             </div>
           );
         })}
+      {messages.length === 0 && selected_type === "user" && (
+        <div>
+          <button onClick={() => handleStartNewPrivateChatRoom(selected_user)}>
+            start conversation with {selected_user?.username}{" "}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
